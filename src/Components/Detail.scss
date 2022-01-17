@@ -1,0 +1,53 @@
+.detail{
+    display: flex;
+    align-items: start;
+    gap:50px;
+    width:100%;
+
+    .img_box{
+        width:50%;
+
+        img{
+            width:100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        }
+    }
+
+    .text_box{
+        width:50%;
+
+        .date_rate{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #dbdbdb;
+
+            .date{
+                color:#555;
+            }
+
+            .rate{
+                color:lightcoral;
+            }
+        }
+
+        .genres_box{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .genres_title{
+                color:orange;
+            }
+
+            .genres_lists{
+                display: flex;
+                align-items: center;
+                gap:10px;
+                color:#888;
+            }
+        }
+    }
+}
