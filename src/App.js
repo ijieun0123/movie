@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
-import Detail from './Components/Detail';
-import Home from './Components/Home';
+import Detail from './pages/Detail';
+import Home from './pages/Home';
 import { Link, Route, Routes } from 'react-router-dom';
+import Header from './organisms/header';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* 헤더 */}
+      <Header></Header>
+
       <Routes>
         {/* home */}
         <Route 
