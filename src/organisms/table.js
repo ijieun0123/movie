@@ -10,13 +10,14 @@ import Paper from '@mui/material/Paper'
 const BasicTable = ({ rating, release_date, genres }) => {
   const createData = (name, value) => {
     if (name === 'Genres') {
-      const value = value
+      const genres = value
         .map((el) => {
           return el.name
         })
-        .join(',')
-      return { name, value }
+        .join(', ')
+      return { name, genres }
     } else {
+      console.log(value)
       return { name, value }
     }
   }
@@ -39,7 +40,9 @@ const BasicTable = ({ rating, release_date, genres }) => {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.value}</TableCell>
+              <TableCell align="right">
+                {row.genres ? row.genres : row.value}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
