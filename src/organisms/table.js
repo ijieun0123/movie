@@ -8,32 +8,40 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
 const BasicTable = ({ rating, release_date, genres }) => {
+  const createData = (name, value) => {
+    if (name === 'Genres') {
+      const value = value
+        .map((el) => {
+          return el.name
+        })
+        .join(',')
+      return { name, value }
+    } else {
+      return { name, value }
+    }
+  }
+
+  const rowsArr = [
+    createData('Rating', rating),
+    createData('Release Date', release_date),
+    createData('Genres', genres),
+  ]
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{}} aria-label="simple table">
         <TableBody>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Rating
-            </TableCell>
-            <TableCell align="right">{rating}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              Release Date
-            </TableCell>
-            <TableCell align="right">{release_date}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              genres
-            </TableCell>
-            <TableCell align="right">
-              {genres.map((genre) => {
-                return <div key={genre.name}>{genre.name}</div>
-              })}
-            </TableCell>
-          </TableRow>
+          {rowsArr.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.value}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
