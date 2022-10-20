@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import axios from 'axios'
-import { Box } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import './App.scss'
 import Detail from './pages/Detail'
 import Home from './pages/Home'
 import Header from './organisms/header'
-
-// 깃허브테스트
-
-const BoxStyle = {
-  margin: '0 auto',
-  padding: '0 50px',
-  maxWidth: '1200px',
-}
 
 function App() {
   const [movies, setMovies] = useState([])
@@ -35,7 +27,7 @@ function App() {
   }, [])
 
   return (
-    <Box sx={BoxStyle}>
+    <Container maxWidth="lg">
       {/* 헤더 */}
       <Header></Header>
 
@@ -46,7 +38,7 @@ function App() {
         {/* 상세 페이지 */}
         <Route exact path="/Detail/:id" element={<Detail movies={movies} />} />
       </Routes>
-    </Box>
+    </Container>
   )
 }
 

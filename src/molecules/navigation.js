@@ -32,7 +32,7 @@ const Navigation = () => {
 
   useEffect(() => {
     getMovies()
-  }, [page])
+  }, [page, value])
 
   useEffect(() => {
     console.log(value)
