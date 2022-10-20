@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid } from '@material-ui/core'
-import MovieCard from '../organisms/card'
+import MovieCard from '../organisms/movieCard'
 import { useSelector } from 'react-redux'
 import Paging from '../organisms/paging'
 
