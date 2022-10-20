@@ -1,8 +1,18 @@
-import './Detail.scss'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
+import Stack from '@mui/material/Stack'
 import Table from '../organisms/table'
+import DetailCard from '../organisms/detailCard'
+
+const ImgStyle = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: 3,
+  boxShadow:
+    '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+}
 
 export default function Detail() {
   const { id } = useParams()
@@ -24,39 +34,26 @@ export default function Detail() {
   }, [])
 
   return (
-    <Box className="detail">
-      <Box className="img_box">
+    <Grid container spacing={2} alignItems="stretch">
+      <Grid item xs={12} md={6} lg={5}>
         <img
+          style={ImgStyle}
           src={'https://image.tmdb.org/t/p/w500' + detail.backdrop_path}
           alt="이미지"
         />
-      </Box>
+      </Grid>
 
-      <div className="text_box">
-        <h1>{detail.original_title}</h1>
-        <p>{detail.overview}</p>
+      <Grid item xs={12} md={6} lg={7}>
+        <Stack spacing={2}>
+          <DetailCard title={detail.original_title} detail={detail.overview} />
 
-        <div className="date_rate">
-          <p className="date">{detail.release_date}</p>
-          <p className="rate">{detail.vote_average}</p>
-        </div>
-
-        <div className="genres_box">
-          <h3 className="genres_title">genres</h3>
-
-          <ul className="genres_lists">
-            {genres.map((genre, i) => {
-              return <li>{genre.name}</li>
-            })}
-          </ul>
-        </div>
-      </div>
-
-      <Table
-        rating={detail.vote_average}
-        release_date={detail.release_date}
-        genres={genres}
-      />
-    </Box>
+          <Table
+            rating={detail.vote_average}
+            release_date={detail.release_date}
+            genres={genres}
+          />
+        </Stack>
+      </Grid>
+    </Grid>
   )
 }
