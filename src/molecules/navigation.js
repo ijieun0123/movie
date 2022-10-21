@@ -1,44 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { MOVIES, VALUE } from '../features/moviesSlice'
-import axios from 'axios'
-import { Tabs, Tab, Box } from '@material-ui/core'
+import {Tabs, Tab, Box} from '@material-ui/core'
 
-const Navigation = () => {
-  const page = useSelector((state) => state.movies.page)
-
-  const [value, setValue] = useState(0)
-
-  const dispatch = useDispatch()
-
-  const onChangeTabs = (e, newValue) => {
-    setValue(newValue)
-  }
-
-  const getMovies = async () => {
-    const keywordArr = ['now_playing', 'popular', 'top_rated', 'upcoming']
-    const keyword = keywordArr[value]
-    const url = `https://api.themoviedb.org/3/movie/${keyword}?api_key=${process.env.REACT_APP_MOVIE_API}&page=${page}`
-
-    try {
-      const res = await axios.get(url)
-      const movies = res.data.results
-      console.log(movies)
-      dispatch(MOVIES(movies))
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  useEffect(() => {
-    getMovies()
-  }, [page, value])
-
-  useEffect(() => {
-    console.log(value)
-    dispatch(VALUE(value))
-  }, [value])
-
+const Navigation = ({value, valueArr, onChangeTabs}) => {
   return (
     <Box
       sx={{
@@ -53,10 +15,10 @@ const Navigation = () => {
         indicatorColor="primary"
         aria-label="scrollable auto tabs example"
       >
-        <Tab label="Now Playing" />
-        <Tab label="Populaor" />
-        <Tab label="Top Rated" />
-        <Tab label="Upcoming" />
+        <Tab label={valueArr[0]} />
+        <Tab label={valueArr[1]} />
+        <Tab label={valueArr[2]} />
+        <Tab label={valueArr[3]} />
       </Tabs>
     </Box>
   )
