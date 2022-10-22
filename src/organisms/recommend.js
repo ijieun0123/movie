@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import {Grid} from '@material-ui/core'
-import Paging from './paging'
+import Paging from '../molecules/paging'
 import api from '../axios/api'
 import usePage from '../core/usePage'
 
