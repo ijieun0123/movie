@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {useState, useEffect} from 'react'
 import api from '../axios/api'
 import usePage from '../core/usePage'
@@ -12,9 +11,9 @@ const Review = ({id}) => {
 
   const {page, onChangePage} = usePage(null)
 
-  const getReview = () => {
+  const getReviews = () => {
     api
-      .getReview(id, page)
+      .getReviews(id, page)
       .then(res => {
         console.log(res.data)
         const {results, total_pages} = res.data
@@ -27,7 +26,7 @@ const Review = ({id}) => {
   }
 
   useEffect(() => {
-    getReview()
+    getReviews()
   }, [page])
 
   return (

@@ -12,23 +12,30 @@ const getDetail = id => {
   )
 }
 
-const getRecommend = (id, page) => {
+const getRecommends = (id, page) => {
   return http.get(
     `/${id}/recommendations?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=${page}`
   )
 }
 
-const getReview = (id, page) => {
+const getReviews = (id, page) => {
   return http.get(
     `/${id}/reviews?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=${page}`
+  )
+}
+
+const getVideos = id => {
+  return http.get(
+    `/${id}/videos?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
   )
 }
 
 const api = {
   getMovies,
   getDetail,
-  getRecommend,
-  getReview,
+  getRecommends,
+  getReviews,
+  getVideos,
 }
 
 export default api

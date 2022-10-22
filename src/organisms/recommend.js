@@ -14,9 +14,9 @@ const Recommend = ({id}) => {
 
   const {page, onChangePage} = usePage(null)
 
-  const getRecommend = () => {
+  const getRecommends = () => {
     api
-      .getRecommend(id, page)
+      .getRecommends(id, page)
       .then(res => {
         console.log(res.data)
         const {results, total_pages} = res.data
@@ -29,7 +29,7 @@ const Recommend = ({id}) => {
   }
 
   useEffect(() => {
-    getRecommend()
+    getRecommends()
   }, [page])
 
   return (
