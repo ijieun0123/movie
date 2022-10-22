@@ -7,6 +7,9 @@ import {
   createTheme,
   Box,
 } from '@material-ui/core'
+import Stack from '@mui/material/Stack'
+import StarIcon from '@mui/icons-material/Star'
+import {yellow} from '@mui/material/colors'
 
 const theme = createTheme()
 
@@ -22,16 +25,7 @@ theme.typography.body2 = {
   color: '#888',
 }
 
-const firstContentStyle = {
-  minHeight: 115,
-}
-
-const lastContentStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-}
-
-const MovieCard = ({ movie }) => {
+const MovieCard = ({movie}) => {
   return (
     <ThemeProvider theme={theme}>
       <Card>
@@ -45,7 +39,7 @@ const MovieCard = ({ movie }) => {
 
         {/* 타이틀 & 디테일 */}
         <CardContent>
-          <Box sx={firstContentStyle}>
+          <Box sx={{minHeight: 115}}>
             <Typography gutterBottom variant="h5" color="primary" noWrap={true}>
               {movie.original_title}
             </Typography>
@@ -55,10 +49,17 @@ const MovieCard = ({ movie }) => {
 
         {/* 개봉일 & 평점 */}
         <CardContent>
-          <Box sx={lastContentStyle}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <Typography variant="body2">{movie.release_date}</Typography>
-            <Typography variant="body2">{movie.vote_average}</Typography>
-          </Box>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <StarIcon sx={{color: yellow[700]}} />
+              <Typography variant="body2">{movie.vote_average}</Typography>
+            </Stack>
+          </Stack>
         </CardContent>
       </Card>
     </ThemeProvider>

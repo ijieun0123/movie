@@ -1,50 +1,50 @@
-import { useState, useEffect } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Star from '../atoms/star'
 
-const BasicTable = ({ rating, release_date, genres }) => {
-  const createData = (name, value) => {
-    if (name === 'Genres') {
-      const genres = value
-        .map((el) => {
-          return el.name
-        })
-        .join(', ')
-      return { name, genres }
-    } else {
-      console.log(value)
-      return { name, value }
-    }
-  }
+const TableRowStyle = {
+  borderBottom: '1px solid rgba(224, 224, 224, 1)',
+  '&:last-child td, &:last-child th': {border: 0},
+}
 
-  const rowsArr = [
-    createData('Rating', rating),
-    createData('Release Date', release_date),
-    createData('Genres', genres),
-  ]
+const TableCellStyle = {
+  float: 'right',
+  border: 'none',
+}
 
+const BasicTable = ({rating, release_date, genres}) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{}} aria-label="simple table">
         <TableBody>
-          {rowsArr.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">
-                {row.genres ? row.genres : row.value}
-              </TableCell>
-            </TableRow>
-          ))}
+          <TableRow sx={TableRowStyle}>
+            <TableCell component="th" scope="row">
+              Rating
+            </TableCell>
+            <TableCell style={TableCellStyle}>
+              <Star rating={rating} size="small" />
+            </TableCell>
+          </TableRow>
+
+          <TableRow sx={TableRowStyle}>
+            <TableCell component="th" scope="row">
+              Release Date
+            </TableCell>
+            <TableCell style={TableCellStyle}>{release_date}</TableCell>
+          </TableRow>
+
+          <TableRow sx={TableRowStyle}>
+            <TableCell component="th" scope="row">
+              Genres
+            </TableCell>
+            <TableCell style={TableCellStyle}>
+              {genres.map(genre => genre.name).join(', ')}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

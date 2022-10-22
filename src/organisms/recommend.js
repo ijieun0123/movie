@@ -7,6 +7,7 @@ import {Grid} from '@material-ui/core'
 import Paging from '../molecules/paging'
 import api from '../axios/api'
 import usePage from '../core/usePage'
+import Star from '../atoms/star'
 
 const Recommend = ({id}) => {
   const [movies, setMovies] = useState([])
@@ -55,7 +56,7 @@ const Recommend = ({id}) => {
                 />
                 <ImageListItemBar
                   title={movie.title}
-                  subtitle={`vote_average: ${movie.vote_average}`}
+                  subtitle={<Star rating={movie.vote_average} size="small" />}
                   position="below"
                 />
               </ImageListItem>
