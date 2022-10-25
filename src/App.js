@@ -18,10 +18,10 @@ function App() {
 
       <Routes>
         {/* home */}
-        <Route exact path="/movie" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
 
         {/* 상세 페이지 */}
-        <Route exact path="/movie/Detail/:id" element={<Detail />} />
+        <Route exact path="/Detail/:id" element={<Detail />} />
       </Routes>
     </Container>
   )
