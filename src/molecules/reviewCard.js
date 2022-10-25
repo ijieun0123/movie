@@ -39,7 +39,7 @@ const ReviewCard = ({author, avatarPath, content, updatedAt, rating}) => {
           avatarPath ? (
             <Avatar
               alt="Remy Sharp"
-              src={'https://image.tmdb.org/t/p/w500' + avatarPath}
+              src={process.env.REACT_APP_IMG_URL + avatarPath}
             />
           ) : (
             <Avatar sx={{bgcolor: blue[500]}} aria-label="recipe">

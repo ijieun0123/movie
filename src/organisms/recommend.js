@@ -38,17 +38,17 @@ const Recommend = ({id}) => {
       <Grid container spacing={1}>
         {movies.map(movie => (
           <Grid key={movie.title} item xs={12} sm={6} md={4} lg={3}>
-            <Link to={`/Detail/${movie.id}`} className="link">
+            <Link to={`/movie/Detail/${movie.id}`} className="link">
               <ImageListItem>
                 <img
                   src={
                     movie.backdrop_path
-                      ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}?w=248&fit=crop&auto=format`
+                      ? `${process.env.REACT_APP_IMG_URL}${movie.backdrop_path}?w=248&fit=crop&auto=format`
                       : `${process.env.PUBLIC_URL}/img/no_photo.png?w=248&fit=crop&auto=format`
                   }
                   srcSet={
                     movie.backdrop_path
-                      ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}?w=248&fit=crop&auto=format&dpr=2 2x`
+                      ? `${process.env.REACT_APP_IMG_URL}${movie.backdrop_path}?w=248&fit=crop&auto=format&dpr=2 2x`
                       : `${process.env.PUBLIC_URL}/img/no_photo.png?w=248&fit=crop&auto=format&dpr=2 2x`
                   }
                   alt={movie.title}

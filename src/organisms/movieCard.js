@@ -33,7 +33,7 @@ const MovieCard = ({movie}) => {
         <CardMedia
           component="img"
           height="160"
-          image={'https://image.tmdb.org/t/p/w500' + movie.backdrop_path}
+          image={process.env.REACT_APP_IMG_URL + movie.backdrop_path}
           alt="movie post"
         />
 

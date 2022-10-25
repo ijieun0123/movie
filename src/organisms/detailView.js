@@ -40,7 +40,7 @@ const DetailView = ({id}) => {
       <Grid item xs={12} md={6} lg={5}>
         <img
           style={ImgStyle}
-          src={'https://image.tmdb.org/t/p/w500' + detail.backdrop_path}
+          src={process.env.REACT_APP_IMG_URL + detail.backdrop_path}
           alt="이미지"
         />
       </Grid>
