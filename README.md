@@ -1,6 +1,6 @@
 ## :pencil2: &nbsp; movie 프로젝트
 
-- [movie 주소]()
+- [movie 주소](https://ijieun0123.github.io/movie)
 
 <br/>
   
