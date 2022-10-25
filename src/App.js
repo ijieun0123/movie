@@ -16,7 +16,7 @@ function App() {
       {/* 헤더 */}
       <Header></Header>
 
-      <Routes>
+      <Routes basename={process.env.PUBLIC_URL}>
         {/* home */}
         <Route exact path="/" element={<Home />} />
 
