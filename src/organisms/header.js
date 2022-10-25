@@ -18,7 +18,7 @@ const Header = () => {
           fontWeight: 'bold',
         }}
       >
-        <Link to="/" className="link">
+        <Link to="/movie" className="link">
           Movie
         </Link>
       </Typography>

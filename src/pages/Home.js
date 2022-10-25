@@ -65,7 +65,7 @@ const Home = () => {
         {movies.map((movie, i) => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-              <Link to={'/Detail/' + movie.id} className="link">
+              <Link to={'/movie/Detail/' + movie.id} className="link">
                 <MovieCard movie={movie} />
               </Link>
             </Grid>
