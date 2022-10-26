@@ -55,5 +55,6 @@ src
 
 ## :pushpin: &nbsp; 핵심 기술 & 이슈
 
-- [material-ui ( 반응형 )](https://github.com/ijieun0123/movie/issues/1)
 - [커스텀 훅](https://github.com/ijieun0123/movie/issues/2)
+- [스켈레톤](https://github.com/ijieun0123/movie/issues/4)
+- [material-ui ( 반응형 )](https://github.com/ijieun0123/movie/issues/1)

@@ -9,7 +9,6 @@ const useSkeleton = getData => {
 
     if (isSubscribed)
       setTimeout(() => {
-        getData()
         setLoading(false)
       }, 1500)
   }, [loading])
