@@ -1,13 +1,13 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import ImageListItem from '@mui/material/ImageListItem'
-import ImageListItemBar from '@mui/material/ImageListItemBar'
 import {Grid} from '@material-ui/core'
 import Paging from '../molecules/paging'
 import api from '../axios/api'
 import usePage from '../core/usePage'
-import Star from '../atoms/star'
+import RecommendItem from '../molecules/recommendItem'
+import Skeletons from '../skeletons/recommendItem'
+import useSkeleton from '../core/useSkeleton'
 
 const Recommend = ({id}) => {
   const [movies, setMovies] = useState([])
@@ -29,6 +29,8 @@ const Recommend = ({id}) => {
       })
   }
 
+  const {loading} = useSkeleton(getRecommends)
+
   useEffect(() => {
     getRecommends()
   }, [page])
@@ -38,10 +40,12 @@ const Recommend = ({id}) => {
       <Grid container spacing={1}>
         {movies.map(movie => (
           <Grid key={movie.title} item xs={12} sm={6} md={4} lg={3}>
-            <Link to={`/movie/Detail/${movie.id}`} className="link">
-              <ImageListItem>
-                <img
-                  src={
+            {loading ? (
+              <Skeletons />
+            ) : (
+              <Link to={`/movie/Detail/${movie.id}`} className="link">
+                <RecommendItem
+                  imgSrc={
                     movie.backdrop_path
                       ? `${process.env.REACT_APP_IMG_URL}${movie.backdrop_path}?w=248&fit=crop&auto=format`
                       : `${process.env.PUBLIC_URL}/img/no_photo.png?w=248&fit=crop&auto=format`
@@ -51,16 +55,11 @@ const Recommend = ({id}) => {
                       ? `${process.env.REACT_APP_IMG_URL}${movie.backdrop_path}?w=248&fit=crop&auto=format&dpr=2 2x`
                       : `${process.env.PUBLIC_URL}/img/no_photo.png?w=248&fit=crop&auto=format&dpr=2 2x`
                   }
-                  alt={movie.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar
                   title={movie.title}
-                  subtitle={<Star rating={movie.vote_average} size="small" />}
-                  position="below"
+                  rating={movie.vote_average}
                 />
-              </ImageListItem>
-            </Link>
+              </Link>
+            )}
           </Grid>
         ))}
       </Grid>

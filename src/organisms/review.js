@@ -4,6 +4,8 @@ import usePage from '../core/usePage'
 import ReviewCard from '../molecules/reviewCard'
 import {Grid} from '@material-ui/core'
 import Paging from '../molecules/paging'
+import useSkeleton from '../core/useSkeleton'
+import Skeleton from '../skeletons/review'
 
 const Review = ({id}) => {
   const [reviews, setReviews] = useState([])
@@ -25,6 +27,8 @@ const Review = ({id}) => {
       })
   }
 
+  const {loading} = useSkeleton(getReviews)
+
   useEffect(() => {
     getReviews()
   }, [page])
@@ -34,13 +38,17 @@ const Review = ({id}) => {
       <Grid container spacing={2} alignItems="stretch">
         {reviews.map(review => (
           <Grid key={review.id} item xs={12} md={6}>
-            <ReviewCard
-              author={review.author}
-              avatarPath={review.author_details.avatar_path}
-              content={review.content}
-              updatedAt={review.updated_at}
-              rating={review.author_details.rating}
-            />
+            {loading ? (
+              <Skeleton />
+            ) : (
+              <ReviewCard
+                author={review.author}
+                avatarPath={review.author_details.avatar_path}
+                content={review.content}
+                updatedAt={review.updated_at}
+                rating={review.author_details.rating}
+              />
+            )}
           </Grid>
         ))}
       </Grid>

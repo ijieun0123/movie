@@ -21,6 +21,8 @@ import {MOVIES} from '../features/moviesSlice'
 import api from '../axios/api'
 import useNavi from '../core/useNavi'
 import usePage from '../core/usePage'
+import Skeletons from '../skeletons/movieCard'
+import useSkeleton from '../core/useSkeleton'
 
 const Home = () => {
   const movies = useSelector(state => state.movies.movies)
@@ -49,6 +51,8 @@ const Home = () => {
       })
   }
 
+  const {loading} = useSkeleton(getMovies)
+
   useEffect(() => {
     getMovies()
   }, [page, value])
@@ -65,9 +69,13 @@ const Home = () => {
         {movies.map((movie, i) => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-              <Link to={'/movie/Detail/' + movie.id} className="link">
-                <MovieCard movie={movie} />
-              </Link>
+              {loading ? (
+                <Skeletons />
+              ) : (
+                <Link to={'/movie/Detail/' + movie.id} className="link">
+                  <MovieCard movie={movie} />
+                </Link>
+              )}
             </Grid>
           )
         })}

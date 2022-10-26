@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 import api from '../axios/api'
 import {Grid, Box} from '@material-ui/core'
+import Skeleton from '@mui/material/Skeleton'
+import useSkeleton from '../core/useSkeleton'
 
 const BoxStyle = {
   position: 'relative',
@@ -9,7 +11,7 @@ const BoxStyle = {
   overflow: 'hidden',
 }
 
-const IframeStyle = {
+const contentStyle = {
   position: 'absolute',
   top: 0,
   let: 0,
@@ -34,19 +36,25 @@ const Video = ({id}) => {
       })
   }
 
-  useEffect(() => {
-    getVideos()
-  }, [])
+  const {loading} = useSkeleton(getVideos)
 
   return (
     <Grid container spacing={1}>
       {videos.map(video => (
         <Grid key={video.id} item xs={12} sm={6} lg={4}>
           <Box sx={BoxStyle}>
-            <iframe
-              style={IframeStyle}
-              src={`https://www.youtube.com/embed/${video.key}?autoplay=1`}
-            ></iframe>
+            {loading ? (
+              <Skeleton
+                style={contentStyle}
+                animation="wave"
+                variant="rectangular"
+              />
+            ) : (
+              <iframe
+                style={contentStyle}
+                src={`https://www.youtube.com/embed/${video.key}?autoplay=1`}
+              ></iframe>
+            )}
           </Box>
         </Grid>
       ))}
