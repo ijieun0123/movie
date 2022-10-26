@@ -1,31 +1,31 @@
 import http from './http-common'
 
-const getMovies = (keyword, page) => {
-  return http.get(
+const getMovies = async (keyword, page) => {
+  return await http.get(
     `/${keyword}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=${page}`
   )
 }
 
-const getDetail = id => {
-  return http.get(
+const getDetail = async id => {
+  return await http.get(
     `/${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
   )
 }
 
-const getRecommends = (id, page) => {
-  return http.get(
+const getRecommends = async (id, page) => {
+  return await http.get(
     `/${id}/recommendations?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=${page}`
   )
 }
 
-const getReviews = (id, page) => {
-  return http.get(
+const getReviews = async (id, page) => {
+  return await http.get(
     `/${id}/reviews?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=${page}`
   )
 }
 
-const getVideos = id => {
-  return http.get(
+const getVideos = async id => {
+  return await http.get(
     `/${id}/videos?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
   )
 }
