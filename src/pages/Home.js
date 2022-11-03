@@ -17,7 +17,6 @@ import MovieCard from '../organisms/movieCard'
 import {useDispatch, useSelector} from 'react-redux'
 import Paging from '../molecules/paging'
 import Navigation from '../molecules/navigation'
-import {MOVIES} from '../features/moviesSlice'
 import api from '../axios/api'
 import useNavi from '../core/useNavi'
 import usePage from '../core/usePage'
@@ -25,16 +24,13 @@ import Skeletons from '../skeletons/movieCard'
 import useSkeleton from '../core/useSkeleton'
 
 const Home = () => {
-  const movies = useSelector(state => state.movies.movies)
-
+  const [movies, setMovies] = useState([])
   const [count, setCount] = useState(0)
 
   const {value, onChangeTabs} = useNavi()
   const {page, onChangePage} = usePage(value)
 
   const valueArr = ['now_playing', 'popular', 'top_rated', 'upcoming']
-
-  const dispatch = useDispatch()
 
   const getMovies = () => {
     const keyword = valueArr[value]
@@ -44,7 +40,7 @@ const Home = () => {
         console.log(res.data)
         const {results, total_pages} = res.data
         setCount(total_pages)
-        dispatch(MOVIES(results))
+        setMovies(results)
       })
       .catch(e => {
         console.log(e)
