@@ -1,5 +1,5 @@
-import {Link, Route, Routes} from 'react-router-dom'
-import {Container, Box} from '@material-ui/core'
+import {Route, Routes} from 'react-router-dom'
+import {Container} from '@material-ui/core'
 import './App.scss'
 import Detail from './pages/Detail'
 import Home from './pages/Home'
@@ -18,10 +18,10 @@ function App() {
 
       <Routes>
         {/* home */}
-        <Route exact path="/movie" element={<Home />} />
+        <Route path="/movie" element={<Home />} />
 
         {/* 상세 페이지 */}
-        <Route exact path="/movie/Detail/:id" element={<Detail />} />
+        <Route path="/movie/Detail/:id" element={<Detail />} />
       </Routes>
     </Container>
   )

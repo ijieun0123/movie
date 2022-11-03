@@ -3,7 +3,14 @@ import ImageListItemBar from '@mui/material/ImageListItemBar'
 import Star from '../atoms/star'
 import React, {memo} from 'react'
 
-const RecommendItem = ({imgSrc, srcSet, title, rating}) => {
+interface RecommendItemProp {
+  imgSrc: string,
+  srcSet: string,
+  title: string,
+  rating: number
+}
+
+const RecommendItem = ({imgSrc, srcSet, title, rating}: RecommendItemProp) => {
   return (
     <ImageListItem>
       <img src={imgSrc} srcSet={srcSet} alt={title} loading="lazy" />

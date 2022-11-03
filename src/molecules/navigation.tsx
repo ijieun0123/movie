@@ -1,7 +1,13 @@
 import {Tabs, Tab, Box} from '@material-ui/core'
 import React, {memo} from 'react'
 
-const Navigation = ({value, valueArr, onChangeTabs}) => {
+interface NavigationProp {
+  value: string,
+  valueArr: string[],
+  onChangeTabs: (e: React.ChangeEvent<{}>, newValue: number) => void
+}
+
+const Navigation = ({value, valueArr, onChangeTabs}: NavigationProp) => {
   return (
     <Box
       sx={{

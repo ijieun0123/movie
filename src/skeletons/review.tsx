@@ -1,5 +1,5 @@
 import Skeleton from '@mui/material/Skeleton'
-import {Card, CardHeader, CardContent, Box, Typography} from '@material-ui/core'
+import {Card, CardHeader, CardContent, Box} from '@material-ui/core'
 
 const ReviewSkeleton = () => {
   return (

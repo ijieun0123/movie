@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 
-const useSkeleton = getData => {
+type getData = () => void;
+
+const useSkeleton = (getData: getData) => {
   const [loading, setLoading] = useState(true)
   const [isSubscribed, setIsSubscribed] = useState(true)
 

@@ -48,7 +48,7 @@ const Review = () => {
     <>
       {reviews.length ? (
         <>
-          <Grid container spacing={2} alignItems="stretch">
+          <Grid container spacing={2} alignItems="start">
             {reviews.map(review => (
               <Grid key={review.id} item xs={12} md={6}>
                 {loading ? (

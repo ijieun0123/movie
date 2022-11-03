@@ -32,6 +32,7 @@
 src
 |_ atoms
 |   |_ star.js
+|   |_ alertPaper.js
 |_ molecules
 |   |_ detailCard.js
 |   |_ navigation.js

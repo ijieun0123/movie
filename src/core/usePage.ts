@@ -1,8 +1,8 @@
 import {useState, useEffect, useCallback} from 'react'
 
-const usePage = value => {
+const usePage = (value: string) => {
   const [page, setPage] = useState(1)
-  const onChangePage = useCallback((e, newPage) => setPage(newPage), [page])
+  const onChangePage = useCallback((e: React.MouseEvent<HTMLButtonElement>, newPage: number) => setPage(newPage), [page])
 
   useEffect(() => {
     setPage(1)

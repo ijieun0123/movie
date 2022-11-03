@@ -3,7 +3,12 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import React, {memo} from 'react'
 
-const DetailCard = ({title, detail}) => {
+interface DetailCardProp {
+  title: string,
+  detail: string
+}
+
+const DetailCard = ({title, detail}: DetailCardProp) => {
   return (
     <Card sx={{minWidth: 275}}>
       <CardContent>

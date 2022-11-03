@@ -5,7 +5,7 @@ const useNavi = () => {
   const {id} = useParams()
 
   const [value, setValue] = useState(0)
-  const onChangeTabs = useCallback((e, newValue) => setValue(newValue), [value])
+  const onChangeTabs = useCallback((e: React.ChangeEvent<{}>, newValue: number) => setValue(newValue), [value])
 
   useEffect(() => {
     setValue(0)

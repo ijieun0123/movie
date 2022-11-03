@@ -6,19 +6,20 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import {Card, CardHeader, CardContent, Box, Typography} from '@material-ui/core'
 import React, {memo} from 'react'
+import { styled } from '@mui/material/styles';
 
-const CardStyle = {
+const CustomCard = styled(Card)({
   position: 'relative',
   height: '100%',
-}
+}) as typeof Card
 
-const ShortenStyle = {
+const CustomTypo = styled(Typography)({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
   WebkitLineClamp: 5,
   WebkitBoxOrient: 'vertical',
-}
+}) as typeof Typography
 
 const ExpandMoreIconStyle = {
   position: 'absolute',
@@ -28,13 +29,21 @@ const ExpandMoreIconStyle = {
   cursor: 'pointer',
 }
 
-const ReviewCard = ({author, avatarPath, content, updatedAt, rating}) => {
+interface ReviewCardProp {
+  author: string,
+  avatarPath: string,
+  content: string,
+  updatedAt: string,
+  rating: number
+}
+
+const ReviewCard = ({author, avatarPath, content, updatedAt, rating}: ReviewCardProp) => {
   const [open, setOpen] = useState(false)
 
   const onClickMore = () => setOpen(!open)
 
   return (
-    <Card style={CardStyle}>
+    <CustomCard>
       <CardHeader
         avatar={
           avatarPath ? (
@@ -53,9 +62,16 @@ const ReviewCard = ({author, avatarPath, content, updatedAt, rating}) => {
       />
 
       <CardContent>
-        <Typography variant="body2" style={open ? null : ShortenStyle}>
-          {content}
-        </Typography>
+        {open
+          ? 
+          <Typography variant="body2"> 
+            {content}
+          </Typography>
+          : 
+          <CustomTypo variant="body2">
+            {content}
+          </CustomTypo>
+        }
       </CardContent>
 
       <Box sx={{ml: 2, mb: 2}}>
@@ -67,7 +83,7 @@ const ReviewCard = ({author, avatarPath, content, updatedAt, rating}) => {
       ) : (
         <ExpandMoreIcon onClick={onClickMore} sx={ExpandMoreIconStyle} />
       )}
-    </Card>
+    </CustomCard>
   )
 }
 

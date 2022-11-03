@@ -6,46 +6,55 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Star from '../atoms/star'
 import React, {memo} from 'react'
+import { styled } from '@mui/material/styles';
 
-const TableRowStyle = {
+const CustomTableRow = styled(TableRow)({
   borderBottom: '1px solid rgba(224, 224, 224, 1)',
   '&:last-child td, &:last-child th': {border: 0},
-}
+}) as typeof TableRow
 
-const TableCellStyle = {
+const CustomTableCell = styled(TableCell)({
   float: 'right',
   border: 'none',
+}) as typeof TableCell
+
+interface BasicTableProp {
+  rating: number,
+  release_date: string,
+  genres: [
+    { name: [] }
+  ],
 }
 
-const BasicTable = ({rating, release_date, genres}) => {
+const BasicTable = ({rating, release_date, genres}: BasicTableProp) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{}} aria-label="simple table">
         <TableBody>
-          <TableRow sx={TableRowStyle}>
+          <CustomTableRow>
             <TableCell component="th" scope="row">
               Rating
             </TableCell>
-            <TableCell style={TableCellStyle}>
+            <CustomTableCell>
               <Star rating={rating} size="small" />
-            </TableCell>
-          </TableRow>
+            </CustomTableCell>
+          </CustomTableRow>
 
-          <TableRow sx={TableRowStyle}>
+          <CustomTableRow>
             <TableCell component="th" scope="row">
               Release Date
             </TableCell>
-            <TableCell style={TableCellStyle}>{release_date}</TableCell>
-          </TableRow>
+            <CustomTableCell>{release_date}</CustomTableCell>
+          </CustomTableRow>
 
-          <TableRow sx={TableRowStyle}>
+          <CustomTableRow>
             <TableCell component="th" scope="row">
               Genres
             </TableCell>
-            <TableCell style={TableCellStyle}>
+            <CustomTableCell>
               {genres.map(genre => genre.name).join(', ')}
-            </TableCell>
-          </TableRow>
+            </CustomTableCell>
+          </CustomTableRow>
         </TableBody>
       </Table>
     </TableContainer>
