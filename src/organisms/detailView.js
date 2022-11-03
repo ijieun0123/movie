@@ -53,7 +53,11 @@ const DetailView = () => {
       <Grid item xs={12} md={6} lg={5}>
         <img
           style={ImgStyle}
-          src={process.env.REACT_APP_IMG_URL + detail.backdrop_path}
+          src={
+            detail.backdrop_path
+              ? process.env.REACT_APP_IMG_URL + detail.backdrop_path
+              : process.env.PUBLIC_URL + '/img/no_photo.png'
+          }
           alt="이미지"
         />
       </Grid>

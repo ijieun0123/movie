@@ -34,7 +34,11 @@ const MovieCard = ({movie}) => {
         <CardMedia
           component="img"
           height="160"
-          image={process.env.REACT_APP_IMG_URL + movie.backdrop_path}
+          image={
+            movie.backdrop_path
+              ? process.env.REACT_APP_IMG_URL + movie.backdrop_path
+              : process.env.PUBLIC_URL + '/img/no_photo.png'
+          }
           alt="movie post"
         />
 
