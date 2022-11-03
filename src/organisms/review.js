@@ -9,6 +9,7 @@ import {Grid} from '@material-ui/core'
 import Paging from '../molecules/paging'
 import useSkeleton from '../core/useSkeleton'
 import Skeleton from '../skeletons/review'
+import AlertPaper from '../atoms/alertPaper'
 
 const Review = () => {
   const reviews = useSelector(state => state.detail.review.results)
@@ -45,25 +46,31 @@ const Review = () => {
 
   return (
     <>
-      <Grid container spacing={2} alignItems="stretch">
-        {reviews.map(review => (
-          <Grid key={review.id} item xs={12} md={6}>
-            {loading ? (
-              <Skeleton />
-            ) : (
-              <ReviewCard
-                author={review.author}
-                avatarPath={review.author_details.avatar_path}
-                content={review.content}
-                updatedAt={review.updated_at}
-                rating={review.author_details.rating}
-              />
-            )}
+      {reviews.length ? (
+        <>
+          <Grid container spacing={2} alignItems="stretch">
+            {reviews.map(review => (
+              <Grid key={review.id} item xs={12} md={6}>
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  <ReviewCard
+                    author={review.author}
+                    avatarPath={review.author_details.avatar_path}
+                    content={review.content}
+                    updatedAt={review.updated_at}
+                    rating={review.author_details.rating}
+                  />
+                )}
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
 
-      <Paging page={page} count={count} onChangePage={onChangePage} />
+          <Paging page={page} count={count} onChangePage={onChangePage} />
+        </>
+      ) : (
+        <AlertPaper />
+      )}
     </>
   )
 }

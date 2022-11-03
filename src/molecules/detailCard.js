@@ -8,13 +8,13 @@ const DetailCard = ({title, detail}) => {
     <Card sx={{minWidth: 275}}>
       <CardContent>
         <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
-          Word of the Day
+          Title
         </Typography>
         <Typography variant="h5" component="div">
           {title}
         </Typography>
-        <Typography sx={{mb: 1.5}} color="text.secondary">
-          adjective
+        <Typography sx={{mt: 1.5}} color="text.secondary">
+          Description
         </Typography>
         <Typography variant="body2">{detail}</Typography>
       </CardContent>
