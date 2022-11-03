@@ -1,6 +1,7 @@
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import React, {memo} from 'react'
 
 const DetailCard = ({title, detail}) => {
   return (
@@ -21,4 +22,4 @@ const DetailCard = ({title, detail}) => {
   )
 }
 
-export default DetailCard
+export default memo(DetailCard)

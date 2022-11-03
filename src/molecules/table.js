@@ -5,6 +5,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Star from '../atoms/star'
+import React, {memo} from 'react'
 
 const TableRowStyle = {
   borderBottom: '1px solid rgba(224, 224, 224, 1)',
@@ -51,4 +52,4 @@ const BasicTable = ({rating, release_date, genres}) => {
   )
 }
 
-export default BasicTable
+export default memo(BasicTable)

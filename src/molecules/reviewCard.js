@@ -5,6 +5,7 @@ import Star from '../atoms/star'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import {Card, CardHeader, CardContent, Box, Typography} from '@material-ui/core'
+import React, {memo} from 'react'
 
 const CardStyle = {
   position: 'relative',
@@ -70,4 +71,4 @@ const ReviewCard = ({author, avatarPath, content, updatedAt, rating}) => {
   )
 }
 
-export default ReviewCard
+export default memo(ReviewCard)

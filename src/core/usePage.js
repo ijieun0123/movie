@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 
 const usePage = value => {
   const [page, setPage] = useState(1)
-  const onChangePage = (e, newPage) => setPage(newPage)
+  const onChangePage = useCallback((e, newPage) => setPage(newPage), [page])
 
   useEffect(() => {
     setPage(1)

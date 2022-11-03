@@ -1,6 +1,7 @@
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import Star from '../atoms/star'
+import React, {memo} from 'react'
 
 const RecommendItem = ({imgSrc, srcSet, title, rating}) => {
   return (
@@ -15,4 +16,4 @@ const RecommendItem = ({imgSrc, srcSet, title, rating}) => {
   )
 }
 
-export default RecommendItem
+export default memo(RecommendItem)

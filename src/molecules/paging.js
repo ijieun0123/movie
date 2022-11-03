@@ -1,5 +1,6 @@
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import React, {memo} from 'react'
 
 const Paging = ({page, count, onChangePage}) => {
   return (
@@ -14,4 +15,4 @@ const Paging = ({page, count, onChangePage}) => {
   )
 }
 
-export default Paging
+export default memo(Paging)

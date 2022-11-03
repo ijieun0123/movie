@@ -10,6 +10,7 @@ import {
 import Stack from '@mui/material/Stack'
 import StarIcon from '@mui/icons-material/Star'
 import {yellow} from '@mui/material/colors'
+import React, {memo} from 'react'
 
 const theme = createTheme()
 
@@ -66,4 +67,4 @@ const MovieCard = ({movie}) => {
   )
 }
 
-export default MovieCard
+export default memo(MovieCard)
