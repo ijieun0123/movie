@@ -17,6 +17,7 @@
 
 <pre>
 * Client
+  Typescript
   React JS
   Redux
   toolkit
