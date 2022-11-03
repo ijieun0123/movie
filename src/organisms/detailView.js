@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {ID, DETAIL} from '../features/detailSlice'
 import {Grid} from '@material-ui/core'
 import Stack from '@mui/material/Stack'
 import Table from '../molecules/table'
@@ -14,8 +16,9 @@ const ImgStyle = {
 }
 
 const DetailView = ({id}) => {
-  const [detail, setDetail] = useState([])
-  const [genres, setGenres] = useState([])
+  const detail = useSelector(state => state.detail.detail)
+
+  const dispatch = useDispatch()
 
   const getDetail = () => {
     api
@@ -23,8 +26,17 @@ const DetailView = ({id}) => {
       .then(res => {
         console.log(res.data)
         const detail = res.data
-        setDetail(detail)
-        setGenres(detail.genres)
+        dispatch(ID(detail.id))
+        dispatch(
+          DETAIL({
+            backdrop_path: detail.backdrop_path,
+            title: detail.title,
+            overview: detail.overview,
+            vote_average: detail.vote_average,
+            release_date: detail.release_date,
+            genres: detail.genres,
+          })
+        )
       })
       .catch(e => {
         console.log(e)
@@ -33,7 +45,7 @@ const DetailView = ({id}) => {
 
   useEffect(() => {
     getDetail()
-  }, [])
+  }, [id])
 
   return (
     <Grid container spacing={2} alignItems="stretch">
@@ -47,12 +59,12 @@ const DetailView = ({id}) => {
 
       <Grid item xs={12} md={6} lg={7}>
         <Stack spacing={2}>
-          <DetailCard title={detail.original_title} detail={detail.overview} />
+          <DetailCard title={detail.title} detail={detail.overview} />
 
           <Table
             rating={detail.vote_average}
             release_date={detail.release_date}
-            genres={genres}
+            genres={detail.genres}
           />
         </Stack>
       </Grid>

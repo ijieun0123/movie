@@ -1,5 +1,7 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {RECOMMEND} from '../features/detailSlice'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import Paging from '../molecules/paging'
@@ -10,8 +12,10 @@ import Skeletons from '../skeletons/recommendItem'
 import useSkeleton from '../core/useSkeleton'
 
 const Recommend = ({id}) => {
-  const [movies, setMovies] = useState([])
-  const [count, setCount] = useState(0)
+  const movies = useSelector(state => state.detail.recommend.results)
+  const count = useSelector(state => state.detail.recommend.total_pages)
+
+  const dispatch = useDispatch()
 
   const {page, onChangePage} = usePage(null)
 
@@ -21,15 +25,19 @@ const Recommend = ({id}) => {
       .then(res => {
         console.log(res.data)
         const {results, total_pages} = res.data
-        setMovies(results)
-        setCount(total_pages)
+        dispatch(
+          RECOMMEND({
+            results: results,
+            total_pages: total_pages,
+          })
+        )
       })
       .catch(e => {
         console.log(e)
       })
   }
 
-  const {loading} = useSkeleton(getRecommends)
+  const {loading} = useSkeleton(getRecommends, id)
 
   useEffect(() => {
     getRecommends()

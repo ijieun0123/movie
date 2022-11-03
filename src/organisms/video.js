@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {VIDEO} from '../features/detailSlice'
 import api from '../axios/api'
 import {Grid, Box} from '@material-ui/core'
 import Skeleton from '@mui/material/Skeleton'
@@ -21,7 +22,9 @@ const contentStyle = {
 }
 
 const Video = ({id}) => {
-  const [videos, setVideos] = useState([])
+  const videos = useSelector(state => state.detail.videos)
+
+  const dispatch = useDispatch()
 
   const getVideos = () => {
     api
@@ -29,14 +32,14 @@ const Video = ({id}) => {
       .then(res => {
         console.log(res.data)
         const {results} = res.data
-        setVideos(results)
+        dispatch(VIDEO(results))
       })
       .catch(e => {
         console.log(e)
       })
   }
 
-  const {loading} = useSkeleton(getVideos)
+  const {loading} = useSkeleton(getVideos, id)
 
   return (
     <Grid container spacing={1}>

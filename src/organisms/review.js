@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {REVIEW} from '../features/detailSlice'
 import api from '../axios/api'
 import usePage from '../core/usePage'
 import ReviewCard from '../molecules/reviewCard'
@@ -8,8 +10,10 @@ import useSkeleton from '../core/useSkeleton'
 import Skeleton from '../skeletons/review'
 
 const Review = ({id}) => {
-  const [reviews, setReviews] = useState([])
-  const [count, setCount] = useState(0)
+  const reviews = useSelector(state => state.detail.review.results)
+  const count = useSelector(state => state.detail.review.total_pages)
+
+  const dispatch = useDispatch()
 
   const {page, onChangePage} = usePage(null)
 
@@ -19,19 +23,23 @@ const Review = ({id}) => {
       .then(res => {
         console.log(res.data)
         const {results, total_pages} = res.data
-        setReviews(results)
-        setCount(total_pages)
+        dispatch(
+          REVIEW({
+            results: results,
+            total_pages: total_pages,
+          })
+        )
       })
       .catch(e => {
         console.log(e)
       })
   }
 
-  const {loading} = useSkeleton(getReviews)
+  const {loading} = useSkeleton(getReviews, id)
 
   useEffect(() => {
     getReviews()
-  }, [page])
+  }, [page, id])
 
   return (
     <>

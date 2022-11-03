@@ -4,9 +4,11 @@ import {persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 import moviesSlice from '../features/moviesSlice'
+import detailSlice from '../features/detailSlice'
 
 const reducers = combineReducers({
   movies: moviesSlice,
+  detail: detailSlice,
 })
 
 const persistConfig = {
