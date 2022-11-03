@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import {useParams} from 'react-router-dom'
 import {RECOMMEND} from '../features/detailSlice'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
@@ -11,10 +12,11 @@ import RecommendItem from '../molecules/recommendItem'
 import Skeletons from '../skeletons/recommendItem'
 import useSkeleton from '../core/useSkeleton'
 
-const Recommend = ({id}) => {
+const Recommend = () => {
   const movies = useSelector(state => state.detail.recommend.results)
   const count = useSelector(state => state.detail.recommend.total_pages)
 
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   const {page, onChangePage} = usePage(null)
@@ -37,7 +39,7 @@ const Recommend = ({id}) => {
       })
   }
 
-  const {loading} = useSkeleton(getRecommends, id)
+  const {loading} = useSkeleton(getRecommends)
 
   useEffect(() => {
     getRecommends()

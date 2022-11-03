@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
 import Navigation from '../molecules/navigation'
 import DetailView from '../organisms/detailView'
 import Video from '../organisms/video'
@@ -8,21 +7,19 @@ import Recommend from '../organisms/recommend'
 import useNavi from '../core/useNavi'
 
 const Detail = () => {
-  const {id} = useParams()
-
   const {value, onChangeTabs} = useNavi()
 
   const valueArr = ['detail', 'recommend', 'review', 'video']
 
   const PrintDetail = () => {
     if (value === 0) {
-      return <DetailView id={id} />
+      return <DetailView />
     } else if (value === 1) {
-      return <Recommend id={id} />
+      return <Recommend />
     } else if (value === 2) {
-      return <Review id={id} />
+      return <Review />
     } else {
-      return <Video id={id} />
+      return <Video />
     }
   }
 

@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import {useParams} from 'react-router-dom'
 import {REVIEW} from '../features/detailSlice'
 import api from '../axios/api'
 import usePage from '../core/usePage'
@@ -9,10 +10,11 @@ import Paging from '../molecules/paging'
 import useSkeleton from '../core/useSkeleton'
 import Skeleton from '../skeletons/review'
 
-const Review = ({id}) => {
+const Review = () => {
   const reviews = useSelector(state => state.detail.review.results)
   const count = useSelector(state => state.detail.review.total_pages)
 
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   const {page, onChangePage} = usePage(null)
@@ -35,7 +37,7 @@ const Review = ({id}) => {
       })
   }
 
-  const {loading} = useSkeleton(getReviews, id)
+  const {loading} = useSkeleton(getReviews)
 
   useEffect(() => {
     getReviews()

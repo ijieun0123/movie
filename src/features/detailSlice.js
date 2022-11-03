@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-  id: 0,
   detail: {
     backdrop_path: '',
     title: '',
@@ -25,9 +24,6 @@ const detailSlice = createSlice({
   name: 'detail',
   initialState,
   reducers: {
-    ID: (state, action) => {
-      state.id = action.payload
-    },
     DETAIL: (state, action) => {
       state.detail = action.payload
     },
@@ -43,5 +39,5 @@ const detailSlice = createSlice({
   },
 })
 
-export const {ID, DETAIL, RECOMMEND, REVIEW, VIDEO} = detailSlice.actions
+export const {DETAIL, RECOMMEND, REVIEW, VIDEO} = detailSlice.actions
 export default detailSlice.reducer

@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
+import {useParams} from 'react-router-dom'
 import {VIDEO} from '../features/detailSlice'
 import api from '../axios/api'
 import {Grid, Box} from '@material-ui/core'
@@ -21,9 +22,10 @@ const contentStyle = {
   border: 'none',
 }
 
-const Video = ({id}) => {
+const Video = () => {
   const videos = useSelector(state => state.detail.videos)
 
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   const getVideos = () => {
@@ -39,7 +41,7 @@ const Video = ({id}) => {
       })
   }
 
-  const {loading} = useSkeleton(getVideos, id)
+  const {loading} = useSkeleton(getVideos)
 
   return (
     <Grid container spacing={1}>

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {ID, DETAIL} from '../features/detailSlice'
+import {useParams} from 'react-router-dom'
+import {DETAIL} from '../features/detailSlice'
 import {Grid} from '@material-ui/core'
 import Stack from '@mui/material/Stack'
 import Table from '../molecules/table'
@@ -15,9 +16,10 @@ const ImgStyle = {
     '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
 }
 
-const DetailView = ({id}) => {
+const DetailView = () => {
   const detail = useSelector(state => state.detail.detail)
 
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   const getDetail = () => {
@@ -26,7 +28,6 @@ const DetailView = ({id}) => {
       .then(res => {
         console.log(res.data)
         const detail = res.data
-        dispatch(ID(detail.id))
         dispatch(
           DETAIL({
             backdrop_path: detail.backdrop_path,
