@@ -1,20 +1,7 @@
-/*
-* Home Page
-1. 구성
-  - navigation
-    => 'now_playing', 'popular', 'top_rated', 'upcoming'
-  - movieCard Lists 
-    => getMovies API
-  - Paging 
-
-2. 주요기능
-  - 네비게이션, 페이지 클릭시 movie lists => 스토어에 저장, 화면에 띄우기
-*/
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import MovieCard from '../organisms/movieCard'
-import {useDispatch, useSelector} from 'react-redux'
 import Paging from '../molecules/paging'
 import Navigation from '../molecules/navigation'
 import api from '../axios/api'
