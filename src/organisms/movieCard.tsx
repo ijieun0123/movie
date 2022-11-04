@@ -26,7 +26,17 @@ theme.typography.body2 = {
   color: '#888',
 }
 
-const MovieCard = ({movie}) => {
+interface MovieCardProp {
+  movie: {
+    backdrop_path: string,
+    original_title: string,
+    overview: string,
+    release_date: string,
+    vote_average: number
+  }
+}
+
+const MovieCard = ({movie}: MovieCardProp) => {
   return (
     <ThemeProvider theme={theme}>
       <Card>

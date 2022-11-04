@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export default axios.create({
   baseURL: 'https://api.themoviedb.org/3/movie',
@@ -6,3 +6,4 @@ export default axios.create({
     'Content-type': 'application/json',
   },
 })
+

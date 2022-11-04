@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useAppSelector, useAppDispatch} from '../app/store'
 import {useParams} from 'react-router-dom'
 import {RECOMMEND} from '../features/detailSlice'
 import {Link} from 'react-router-dom'
@@ -14,11 +14,12 @@ import useSkeleton from '../core/useSkeleton'
 import AlertPaper from '../atoms/alertPaper'
 
 const Recommend = () => {
-  const movies = useSelector(state => state.detail.recommend.results)
-  const count = useSelector(state => state.detail.recommend.total_pages)
+  const movies = useAppSelector(state => state.detail.recommend.results)
+  const count = useAppSelector(state => state.detail.recommend.total_pages)
+
 
   const {id} = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const {page, onChangePage} = usePage(null)
 

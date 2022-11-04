@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {Typography, Tabs, Tab, Box} from '@material-ui/core'
+import {Typography, Box} from '@material-ui/core'
 
 const Header = () => {
   return (

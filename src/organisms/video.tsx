@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux'
+import {useAppSelector, useAppDispatch} from '../app/store'
 import {useParams} from 'react-router-dom'
 import {VIDEO} from '../features/detailSlice'
 import api from '../axios/api'
@@ -6,6 +6,7 @@ import {Grid, Box} from '@material-ui/core'
 import Skeleton from '@mui/material/Skeleton'
 import useSkeleton from '../core/useSkeleton'
 import AlertPaper from '../atoms/alertPaper'
+import styled from 'styled-components';
 
 const BoxStyle = {
   position: 'relative',
@@ -23,11 +24,20 @@ const contentStyle = {
   border: 'none',
 }
 
+const CustomIframe = styled.iframe`
+  position: absolute;
+  top: 0;
+  let: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+`
+
 const Video = () => {
-  const videos = useSelector(state => state.detail.videos)
+  const videos = useAppSelector(state => state.detail.videos.results)
 
   const {id} = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const getVideos = () => {
     api
@@ -35,7 +45,7 @@ const Video = () => {
       .then(res => {
         console.log(res.data)
         const {results} = res.data
-        dispatch(VIDEO(results))
+        dispatch(VIDEO({results: results}))
       })
       .catch(e => {
         console.log(e)
@@ -53,15 +63,14 @@ const Video = () => {
               <Box sx={BoxStyle}>
                 {loading ? (
                   <Skeleton
-                    style={contentStyle}
+                    sx={contentStyle}
                     animation="wave"
                     variant="rectangular"
                   />
                 ) : (
-                  <iframe
-                    style={contentStyle}
+                  <CustomIframe
                     src={`https://www.youtube.com/embed/${video.key}?autoplay=1`}
-                  ></iframe>
+                  ></CustomIframe>
                 )}
               </Box>
             </Grid>

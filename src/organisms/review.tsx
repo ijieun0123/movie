@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useAppSelector, useAppDispatch} from '../app/store'
 import {useParams} from 'react-router-dom'
 import {REVIEW} from '../features/detailSlice'
 import api from '../axios/api'
@@ -12,11 +12,11 @@ import Skeleton from '../skeletons/review'
 import AlertPaper from '../atoms/alertPaper'
 
 const Review = () => {
-  const reviews = useSelector(state => state.detail.review.results)
-  const count = useSelector(state => state.detail.review.total_pages)
+  const reviews = useAppSelector(state => state.detail.review.results)
+  const count = useAppSelector(state => state.detail.review.total_pages)
 
   const {id} = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const {page, onChangePage} = usePage(null)
 
@@ -48,7 +48,7 @@ const Review = () => {
     <>
       {reviews.length ? (
         <>
-          <Grid container spacing={2} alignItems="start">
+          <Grid container spacing={2}>
             {reviews.map(review => (
               <Grid key={review.id} item xs={12} md={6}>
                 {loading ? (

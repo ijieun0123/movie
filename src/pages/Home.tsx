@@ -24,7 +24,7 @@ import Skeletons from '../skeletons/movieCard'
 import useSkeleton from '../core/useSkeleton'
 
 const Home = () => {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState<any[]>([])
   const [count, setCount] = useState(0)
 
   const {value, onChangeTabs} = useNavi()

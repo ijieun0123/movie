@@ -1,28 +1,28 @@
 import {useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useAppSelector, useAppDispatch} from '../app/store'
 import {useParams} from 'react-router-dom'
 import {DETAIL} from '../features/detailSlice'
-import {Grid} from '@material-ui/core'
+import {Grid, Box} from '@material-ui/core'
 import Stack from '@mui/material/Stack'
 import Table from '../molecules/table'
 import DetailCard from '../molecules/detailCard'
 import api from '../axios/api'
-import { styled } from '@mui/material/styles';
-import Image from "material-ui-image";
+import styled from 'styled-components';
 
-const CustomImage = styled(Image)({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
+const CustomImage = styled.img`
+  width: 100%;
+  height: 100%;
+  objectFit: cover;
   boxShadow:
-    '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
-}) as typeof Image
+    0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  borderRadius: 5px;
+`
 
 const DetailView = () => {
-  const detail = useSelector(state => state.detail.detail)
+  const detail = useAppSelector(state => state.detail.detail)
 
   const {id} = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const getDetail = () => {
     api
