@@ -23,6 +23,7 @@
   toolkit
   Axios
   material-ui
+  styled-component
 </pre>
 
 <br/>
@@ -32,25 +33,25 @@
 <pre>
 src
 |_ atoms
-|   |_ star.js
-|   |_ alertPaper.js
+|   |_ star.tsx
+|   |_ alertPaper.tsx
 |_ molecules
-|   |_ detailCard.js
-|   |_ navigation.js
-|   |_ paging.js
-|   |_ recommendItem.js
-|   |_ reviewCard.js
-|   |_ table.js
+|   |_ detailCard.tsx
+|   |_ navigation.tsx
+|   |_ paging.tsx
+|   |_ recommendItem.tsx
+|   |_ reviewCard.tsx
+|   |_ table.tsx
 |_ organisms
-|   |_ detailView.js
-|   |_ header.js
-|   |_ movieCard.js
-|   |_ recommend.js
-|   |_ review.js
-|   |_ video.js
+|   |_ detailView.tsx
+|   |_ header.tsx
+|   |_ movieCard.tsx
+|   |_ recommend.tsx
+|   |_ review.tsx
+|   |_ video.tsx
 |_ pages
-    |_ Detail.js
-    |_ Home.js
+    |_ Detail.tsx
+    |_ Home.tsx
 </pre>
 
 <br/>
