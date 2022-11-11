@@ -62,3 +62,4 @@ src
 - [스켈레톤](https://github.com/ijieun0123/movie/issues/4)
 - [material-ui ( 반응형 )](https://github.com/ijieun0123/movie/issues/1)
 - [useCallback + React.memo](https://github.com/ijieun0123/movie/issues/5)
+- [Typescript](https://github.com/ijieun0123/movie/issues/6)
